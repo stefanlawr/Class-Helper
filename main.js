@@ -9,7 +9,12 @@ request('https://ssb.ramapo.edu/pls/RCNJ/twbkwbis.P_GenMenu?name=homepage', (err
     // console.log(bannerCopyright.html());
     // console.log(bannerCopyright.text());
 
-    const output = bannerCopyright.find('h5').text();
-    console.log(output);
+    // const output = bannerCopyright.find('h5').text();
+    // console.log(output);
+
+    $('.mpdefault a').each((i, element) => {
+      const item = $(element).text();
+      console.log(item);
+    });
   }
 });
