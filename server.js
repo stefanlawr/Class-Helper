@@ -7,7 +7,22 @@ let app = express();
 
 app.get('/scrape', (req, res) => {
 
-  // Web scraping logic here
+  // URL we will be scraping
+  url = 'http://www.imdb.com/title/tt1229340/';
+
+  // Structure for our request
+  request(url, (error, response, html) => {
+    if (!error) {
+      let $ = cheerio.load(html);
+
+      let title, release, rating;
+      let json = {
+        title: "",
+        release: "",
+        rating: ""
+      };
+    }
+  })
 
 });
 
