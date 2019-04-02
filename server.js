@@ -1,7 +1,7 @@
 let express = require('express');
 let fs = require('fs');
-let request = require('request');
-let cheerio = require('cheerio');
+const request = require('request');
+const cheerio = require('cheerio');
 
 let app = express();
 
@@ -23,23 +23,25 @@ app.get('/scrape', (req, res) => {
       };
 
       // Unique header class as a starting point; This is the CSS class we're filtering by
-      $('.header').filter(() => {
+      $('.title_wrapper').filter(() => {
         // Data we filtered is stored here
         let data = $(this);
         // Title information relates to it's location in the HTML file
         title = data.children().first().text();
 
         // Release information happens to be at the end
-        release = data.children().last().children().text();
+        // release = data.children().last().children().text();
 
         output.title = title;
-        output.release = release;
+        // output.release = release;
       });
     }
 
-    fs.writeFile('output.json', JSON.stringify(this.output, null, 4), (err) => {
-      console.log('Output written to output.json');
-    });
+    // fs.writeFile('output.json', JSON.stringify(this.output, null, 4), (err) => {
+    //   console.log('Output written to output.json');
+    // });
+
+    console.log('Output:', this.output.title);
 
     res.send('Check the console.');
 
