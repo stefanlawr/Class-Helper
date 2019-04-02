@@ -15,8 +15,8 @@ app.get('/scrape', (req, res) => {
     if (!error) {
       let $ = cheerio.load(html);
 
-      let title, release, rating;
-      let json = {
+      let title, release;
+      let output = {
         title: "",
         release: "",
         rating: ""
@@ -32,10 +32,17 @@ app.get('/scrape', (req, res) => {
         // Release information happens to be at the end
         release = data.children().last().children().text();
 
-        json.title = title;
-        json.release = release;
+        output.title = title;
+        output.release = release;
       });
     }
+
+    fs.writeFile('output.json', JSON.stringify(this.output, null, 4), (err) => {
+      console.log('Output written to output.json');
+    });
+
+    res.send('Check the console.');
+
   });
 
 });
