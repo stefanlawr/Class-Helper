@@ -21,8 +21,22 @@ app.get('/scrape', (req, res) => {
         release: "",
         rating: ""
       };
+
+      // Unique header class as a starting point; This is the CSS class we're filtering by
+      $('.header').filter(() => {
+        // Data we filtered is stored here
+        let data = $(this);
+        // Title information relates to it's location in the HTML file
+        title = data.children().first().text();
+
+        // Release information happens to be at the end
+        release = data.children().last().children().text();
+
+        json.title = title;
+        json.release = release;
+      });
     }
-  })
+  });
 
 });
 
